@@ -1,0 +1,25 @@
+<% provide(:title, "Edit") %>
+<div class="main">
+  <div class="introduction-container">
+    <div class="title">
+      <p>自己紹介を編集する</p>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <%= form_with model: @user do |f| %>
+          <%= f.label :introduction, "自己紹介文" %>
+          <%= f.text_area :introduction, class: 'form-control', rows: '5' %>
+          <div class="explain">
+            <p>200文字以上、800文字未満で入力してください</p>
+          </div>
+          <%= f.label :password, "アバター画像" %>
+          <%= f.file_field :avatar, class: 'form-control-file', style: 'border :none' %>
+
+          <div class="center-button">
+            <%= f.submit "自己紹介を確定する", class: "nomal button" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
