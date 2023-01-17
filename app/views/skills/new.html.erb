@@ -1,0 +1,24 @@
+<% provide(:title, 'New') %>
+<div class="main">
+  <div class="new-container">
+    <div class="title">
+      <p><%= @category.category_name %>にスキルを追加</p>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <%= form_with model: [@category, @skill] do |f| %>
+          <%= f.label :skill_name, "習得スキル" %>
+          <%= f.text_field :skill_name, class: 'form-control' %>
+          <%= f.label :level, "習得レベル" %>
+          <%= f.text_field :level, class: 'form-control' %>
+          <div class="explain">
+            <p>0 ~ 100 の間で選択してください</p>
+          </div>
+          <div class="center-button">
+            <%= f.submit "追加する", class: "nomal button" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
