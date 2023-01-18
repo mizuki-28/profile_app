@@ -6,16 +6,11 @@
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
 }
 
 /* SET UP */
 body {
   font-family: 'Roboto', sans-serif;
-}
-
-.main a {
-  text-decoration: none;
 }
 
 a:hover {
@@ -30,6 +25,7 @@ a:hover {
   left: 0;
   width: 100%;
   position: fixed;
+  z-index: 1;
 }
 
 .header-container {
@@ -57,9 +53,15 @@ a:hover {
 }
 
 /* BODY */
-.main {
-  min-height: 96vh;
+.wrapper {
+  min-height: 100vh;
+  position: relative;
   padding: 200px 0 40px;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
 }
 
 /* FORMS */
@@ -67,7 +69,7 @@ input, textarea, select, .uneditable-input {
   border: 1px solid #808080;
   width: 100%;
   margin-bottom: 15px;
-  @include box_sizing;
+  box-sizing: border-box;
 }
 
 input {
@@ -119,7 +121,7 @@ label {
 .session {
   background-color: #FFF;
   color: #1B5678;
-  padding: 12px 40px;
+  padding: 13px 40px;
 }
 
 .save {
@@ -138,10 +140,6 @@ label {
 }
 
 /* TOP PAGE */
-.top-container {
-  margin: 0 197px;
-}
-
 .info {
   display: flex;
 }
@@ -162,29 +160,33 @@ label {
   font-weight: bold;
   width: 240px;
   padding-bottom: 16px;
+  color: #525252;
 }
 
 .introduction-text {
-  margin-top: 32px;
+  margin: 32px 0 48px;
+  color: #525252;
+  line-height: 150%;
 }
 
 .introduction-text-nil {
   color: #FF0000;
-  margin-top: 32px;
+  margin: 32px 0;
 }
 
 .chart {
-  margin-bottom: 40px;
+  margin-bottom: 80px;
+  text-align: center;
 }
 
 .chart-title {
   margin: 120px auto 80px;
-  text-align: center;
   border-bottom: 2px solid #C0C0C0;
   font-size: 36px;
   font-weight: bold;
   width: 400px;
   padding-bottom: 16px;
+  color: #525252;
 }
 
 /* SKILL PAGE */
@@ -193,6 +195,10 @@ label {
   border-radius: 8px;
   margin: 0 auto 40px;
   width: 960px;
+}
+
+.card-bottom {
+  height: 40px;
 }
 
 .card-top {
@@ -211,6 +217,7 @@ label {
   font-size: 24px;
   font-weight: bold;
   padding-bottom: 16px;
+  color: #525252;
 }
 
 table {
@@ -237,6 +244,7 @@ td {
   padding: 8px 0;
   width: 200px;
   text-align: center;
+  color: #525252;
 }
 
 /* NEW PAGE */
@@ -250,9 +258,10 @@ td {
 /* FOOTER */
 .footer {
   background-color: #1B5678;
-  bottom: 0;
   height: 40px;
   width: 100%;
+  bottom: 0;
+  position: absolute;
 }
 
 .footer-container {
