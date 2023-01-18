@@ -1,1 +1,28 @@
-<p>ログインしてます</p>
+<% provide(:title, current_user.name) %>
+<div class="container">
+  <div class="info">
+    <div class="avatar">
+      <%= image_tag 'default_avatar.png' %>
+    </div>
+    <div class="introduction">
+      <div class="introduction-title">
+        <p>自己紹介</p>
+      </div>
+      <div class="introduction-text">
+        <p><%= current_user.introduction %></p>
+      </div>
+      <div class="introduction-button">
+        <%= link_to "自己紹介を編集する", edit_path(current_user), class: "nomal button" %>
+      </div>
+    </div>
+  </div>
+  <div class="chart">
+    <div class="chart-title">
+      <p>スキルチャート</p>
+    </div>
+    <div class="chart-image">
+      <%= image_tag 'sample_chart.png' %>
+    </div>
+  </div>
+</div>
+

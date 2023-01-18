@@ -32,16 +32,14 @@ Things you may want to cover:
 <% end %>
 
 def top
-    @user = User.find(params[:id])
-  end
+  @user = User.find(params[:id])
+end
 
-user topのview
-<% provide(:title, @user.name) %>
+■習得レベルの選択肢にlevelsテーブルの値をとってくる
 
-Level.create(rank: 1)
-Level.find(5).update_column(:rank, 50)
+<%= f.label :skill_name, "習得レベル" %>
+<%= f.collection_select :level_id, Level.all, :id, :rank, class: 'form-select' %>
 
-          <%= f.label :skill_name, "習得レベル" %>
-          <%= f.collection_select :level_id, Level.all, :id, :rank, class: 'form-select' %>
-
-    <!-- # 
+■メモ
+migrationファイルひとつdb:migrateできていない
+SQLite3は設定しなくてもuniqueになっている？？
