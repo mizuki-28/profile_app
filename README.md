@@ -43,3 +43,8 @@ end
 ■メモ
 migrationファイルひとつdb:migrateできていない
 SQLite3は設定しなくてもuniqueになっている？？
+
+User.create(name: "test user", email: "test.user@example.com", password: "000000", introduction: "自己紹介")
+
+<%= f.label :level, "習得レベル" %>
+<%= f.number_field :level, class: 'form-control' %>

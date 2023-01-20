@@ -5,10 +5,11 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    if user # && user.authenticate(params[:session][:password])
+    if user&.authenticate(params[:session][:password])
       reset_session
       log_in user
-      redirect_to root_url
+      redirect_to user
+      flash[:success] = 'ログインしました'
     else
       flash.now[:danger] = 'メールアドレスもしくはパスワードが間違っています'
       render 'new', status: :unprocessable_entity

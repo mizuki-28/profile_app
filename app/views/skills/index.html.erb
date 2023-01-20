@@ -1,0 +1,40 @@
+<% provide(:title, 'Skills') %>
+<div class="container">
+  <% @categories.each do |category| %>
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title"><%= category.category_name %></div>
+        <%= link_to "スキルを追加する", new_user_category_skill_path(current_user.id, category.id), class: "nomal button" %>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <td width="200">習得スキル</td>
+            <td width="200">習得レベル</td>
+            <td width="240"></td>
+            <td width="240"></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @skills.each do |skill| %>
+            <% if category.id.eql?(skill.category_id) %>
+              <%= form_with model: @skill, method: :put do |f| %>
+                <tr>
+                  <td><%= skill.skill_name %></td>
+                  <td><%= f.number_field :level, value: skill.level, class: 'form-control' %></td>
+                      <%= f.hidden_field :user_id, value: current_user.id %>
+                      <%= f.hidden_field :category_id, value: skill.category_id %>
+                      <%= f.hidden_field :id, value: skill.id %>
+                  <td><%= f.submit "習得レベルを保存する", class: "save button" %></td>
+                  <td><%= link_to "スキルを削除する", "/users/#{current_user.id}/skills/#{skill.id}", data: { turbo_method: :delete }, class: "delete button" %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+  <div class="card-bottom">
+  </div>
+</div>

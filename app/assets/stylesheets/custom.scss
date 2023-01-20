@@ -13,6 +13,10 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.wrapper a {
+  text-decoration: none;
+}
+
 a:hover {
   opacity: 0.7;
 }
@@ -64,11 +68,16 @@ a:hover {
   margin: 0 auto;
 }
 
+.alert {
+  text-align: center;
+  margin: -40px auto 60px;
+  width: 90%;
+}
+
 /* FORMS */
 input, textarea, select, .uneditable-input {
   border: 1px solid #808080;
   width: 100%;
-  margin-bottom: 15px;
   box-sizing: border-box;
 }
 
@@ -85,12 +94,19 @@ label {
 
 .form-control {
   padding: 8px;
-  margin-bottom: 5px;
+}
+
+select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px 0 #EAEAEA;
 }
 
 .explain {
   color: #808080;
   font-size: 12px;
+  margin-top: 10px;
 }
 
 /* BUTTON */
@@ -128,12 +144,13 @@ label {
   border: 1px solid #1B5678;
   color: #1B5678;
   padding: 10px 16px;
+  background-color: #FFF;
 }
 
 .delete {
   background-color: #EE6969;
   color: #FFF;
-  padding: 11px 16px;
+  padding: 9px 16px;
   &:hover {
     color: #FFF;
   }
@@ -180,13 +197,17 @@ label {
 }
 
 .chart-title {
-  margin: 120px auto 80px;
+  margin: 120px auto 48px;
   border-bottom: 2px solid #C0C0C0;
   font-size: 36px;
   font-weight: bold;
   width: 400px;
   padding-bottom: 16px;
   color: #525252;
+}
+
+.chart-image {
+  margin: 80px;
 }
 
 /* SKILL PAGE */
@@ -221,30 +242,34 @@ label {
 }
 
 table {
-  border-collapse:  collapse;
-  border-radius: 4px;
+  border: 1px #E2E2E2 solid;
+  border-collapse: separate;
+  border-radius: 6px;
   box-shadow: 0 1px 3px 0 #E2E2E2;
+  font-weight: 400;
   margin: 40px 40px;
   width: 880px;
-  table-layout: fixed;
-  font-weight: 400;
-}
-
-tr {
-  border: 1px #E2E2E2 solid;
 }
 
 th {
   height: 72px;
-  padding: 8px 40px;
+  padding: 8px 0;
 }
 
 td {
-  height: 72px;
-  padding: 8px 0;
-  width: 200px;
-  text-align: center;
   color: #525252;
+  border-top: 1px #E2E2E2 solid;
+  border-bottom: 1px #E2E2E2 solid;
+  height: 72px;
+  padding: 26px 0 26px 40px;
+}
+
+tr:first-child td {
+  border-top: none;
+}
+
+tr:last-child td {
+  border-bottom: none;
 }
 
 /* NEW PAGE */
