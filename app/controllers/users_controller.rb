@@ -1,34 +1,35 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, except: :top
 
   def top
   end
 
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      reset_session
-      log_in @user
-      flash[:success] = "Welcome to My Profile App!"
-      redirect_to @user
-    else
-      render 'new', status: :unprocessable_entity
-    end
+  def show
+    @user = User.find(current_user.id)
+    @dataset_1 = Skill.where(user_id: current_user.id, category_id: 1).map(&:level)
+    @dataset_2 = Skill.where(user_id: current_user.id, category_id: 2).map(&:level)
+    @dataset_3 = Skill.where(user_id: current_user.id, category_id: 3).map(&:level)
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = "自己紹介を更新しました"
+      redirect_to @user
+    else
+      flash.now[:danger] = "自己紹介を更新できませんでした"
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :introduction, :avatar)
     end
+
 end

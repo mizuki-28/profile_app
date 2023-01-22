@@ -1,0 +1,55 @@
+<% provide(:title, current_user.name) %>
+<div class="container">
+  <div class="info">
+    <div class="avatar">
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar %>
+      <% else %>
+        <%= image_tag 'default_avatar.png' %>
+      <% end %>
+    </div>
+    <div class="introduction">
+      <div class="introduction-title">
+        <p>自己紹介</p>
+      </div>
+      <div class="introduction-text">
+        <p><%= current_user.introduction %></p>
+      </div>
+      <div class="introduction-button">
+        <%= link_to "自己紹介を編集する", edit_user_path(current_user), class: "nomal button" %>
+      </div>
+    </div>
+  </div>
+  <div class="chart">
+    <div class="chart-title">
+      <p>スキルチャート</p>
+    </div>
+    <div class="center-button">
+      <%= link_to "スキルを編集する", user_skills_path(current_user), class: "nomal button" %>
+    </div>
+      <canvas id="mychart-bar"></canvas>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        var ctx = document.getElementById('mychart-bar');
+        var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['January', 'February', 'March'],
+            datasets: [{
+              label: 'バックエンド',
+              data: <%= @dataset_1 %>,
+              backgroundColor: '#ffc0cb',
+            }, {
+              label: 'フロントエンド',
+              data: <%= @dataset_2 %>,
+              backgroundColor: '#ffd5bf',
+            }, {
+              label: 'インフラ',
+              data: <%= @dataset_3 %>,
+              backgroundColor: '#fff4bf',
+            }],
+          },
+        });
+      </script>
+  </div>
+</div>

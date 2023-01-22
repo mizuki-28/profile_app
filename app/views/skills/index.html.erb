@@ -1,0 +1,66 @@
+<% provide(:title, 'Skills') %>
+<div class="container">
+  <% @categories.each do |category| %>
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title"><%= category.category_name %></div>
+        <%= link_to "スキルを追加する", new_user_category_skill_path(current_user.id, category.id), class: "nomal button" %>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <td width="200">習得スキル</td>
+            <td width="200">習得レベル</td>
+            <td width="240"></td>
+            <td width="240"></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @skills.each do |skill| %>
+            <% if category.id.eql?(skill.category_id) %>
+              <tr>
+                  <td><%= skill.skill_name %></td>
+                <%= form_with model: @skill, url: user_skills_path do |f| %>
+                  <td><%= f.number_field :level, value: skill.level, class: 'form-control' %></td>
+                      <%= f.hidden_field :category_id, value: skill.category_id %>
+                  <td><%= f.submit "習得レベルを保存する", class: "save button" %></td>
+                <% end %>
+                  <td><%= link_to "スキルを削除する", "/users/#{current_user.id}/skills/#{skill.id}", data: { turbo_method: :delete }, class: "delete button" %></td>
+              </tr>
+            <% end %>
+            <!-- modalstart -->
+            <section id="modal-create" class="modal">
+              <a href="#close" class="modal-body"></a>
+              <div class="modal-content">
+                <p><%= category.category_name %>に<%= skill.skill_name %>を<br>習得レベル<%= skill.level %>で追加しました！</p>
+                <div class="center-button">
+                  <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button" %>
+                </div>
+              </div>
+            </section>
+            <section id="modal-update" class="modal">
+              <a href="#close" class="modal-body"></a>
+              <div class="modal-content">
+                <p><%= skill.skill_name %>の習得レベルを保存しました！</p>
+                <div class="center-button">
+                  <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button" %>
+                </div>
+              </div>
+            </section>
+            <section id="modal-destroy" class="modal">
+              <a href="#close" class="modal-body"></a>
+                <div class="modal-content">
+                  <p><%= category.category_name %>の項目を削除しました！</p>
+                  <div class="center-button">
+                    <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button" %>
+                  </div>
+                </div>
+            </section>
+            <!-- modalend -->
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+  <div class="card-bottom"></div>
+</div>
