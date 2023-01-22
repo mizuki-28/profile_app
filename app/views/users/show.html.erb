@@ -2,7 +2,11 @@
 <div class="container">
   <div class="info">
     <div class="avatar">
-      <%= image_tag 'default_avatar.png' %>
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar %>
+      <% else %>
+        <%= image_tag 'default_avatar.png' %>
+      <% end %>
     </div>
     <div class="introduction">
       <div class="introduction-title">
@@ -23,8 +27,29 @@
     <div class="center-button">
       <%= link_to "スキルを編集する", user_skills_path(current_user), class: "nomal button" %>
     </div>
-    <div class="chart-image">
-      <%= image_tag 'sample_chart.png' %>
-    </div>
+      <canvas id="mychart-bar"></canvas>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        var ctx = document.getElementById('mychart-bar');
+        var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['January', 'February', 'March'],
+            datasets: [{
+              label: 'バックエンド',
+              data: <%= @dataset_1 %>,
+              backgroundColor: '#ffc0cb',
+            }, {
+              label: 'フロントエンド',
+              data: <%= @dataset_2 %>,
+              backgroundColor: '#ffd5bf',
+            }, {
+              label: 'インフラ',
+              data: <%= @dataset_3 %>,
+              backgroundColor: '#fff4bf',
+            }],
+          },
+        });
+      </script>
   </div>
 </div>

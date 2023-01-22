@@ -45,6 +45,14 @@ migrationファイルひとつdb:migrateできていない
 SQLite3は設定しなくてもuniqueになっている？？
 
 User.create(name: "test user", email: "test.user@example.com", password: "000000", introduction: "自己紹介")
+Skill.create(skill_name: "Sample", level: 40, user_id: 1, category_id: 1)
 
 <%= f.label :level, "習得レベル" %>
 <%= f.number_field :level, class: 'form-control' %>
+
+"/users/#{current_user.id}/skills/#{skill.id}"
+<%= form_with model: @skill do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :category_id, value: skill.category_id %>
+  <%= f.hidden_field :id, value: skill.id %>
+  

@@ -11,9 +11,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users do
+    resources :skills, only: [:destroy]
+  end
 
   resources :users do
-    resources :skills, only: [:index, :edit, :update, :destroy]
+    get '/skills',    to: 'skills#index'
+    patch '/skills',  to: 'skills#update'
   end
+
 end
