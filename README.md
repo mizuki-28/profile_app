@@ -44,7 +44,7 @@ $ rails server
 を参考にしてください。
 
 ## MEMO
-
+```
     <canvas id="mychart-bar"></canvas>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -69,7 +69,8 @@ $ rails server
       },
     });
     </script>
-
+```
+```
 <script>
   const btn = document.getElementById('modalOpen');
   const modal = document.getElementById('modalCreate');
@@ -83,6 +84,8 @@ $ rails server
     modal.style.display = 'none';
   })
 </script>
+```
+```
 <script>
 {
   const openBtn = document.querySelector('.open');
@@ -102,6 +105,8 @@ $ rails server
   });
 }
 </script>
+```
+```
   <!-- モーダル -->
   <div class="overlay"></div>
   <div class="modal">
@@ -113,7 +118,8 @@ $ rails server
     </div>
   </div>
   <!-- モーダルおわり -->
-
+```
+```
 {
   const openBtn = document.querySelector('.open');
   const modal = document.querySelector('.modal');
@@ -131,9 +137,9 @@ $ rails server
     overlay.classList.remove('active');
   });
 }
-
+```
+```
 /* MODAL */
-
 /* オーバーレイ（黒の背景） */
 .overlay {
   /* 位置を固定 */
@@ -151,14 +157,12 @@ $ rails server
   /* 表示する際の変化の所要時間 */
   transition: .3s;
 }
-
 /* activeクラスのついたオーバーレイ */
 .overlay.active {
   /* activeクラスがついたときにオーバーレイを表示する */
   opacity: 1;
   visibility: visible;
 }
-
 /* モーダルウィンドウ */
 .modal {
   max-width: 500px;
@@ -176,18 +180,16 @@ $ rails server
   /* 表示の変化にかかる時間 */
   transition: .3s;
 }
-
 /* activeクラスのついたモーダルウィンドウ */
 .modal.active {
   opacity: 1;
   visibility: visible;
 }
-
 .modal p {
   font-size: 13px;
 }
-
 /* スクロールできる高さを出すための設定 */
 section {
   height: 200vh;
 }
+```
