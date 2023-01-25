@@ -5,19 +5,13 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
-  resources :users do
-    resources :categories do
-      resources :skills, only: [:new, :create]
+  resources :users, only: [:show, :edit, :update] do
+    resources :skills, only: :index
+  end
+
+  resources :users, except: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    resources :categories, except: [:index, :new, :create, :show, :edit, :update, :destroy] do
+      resources :skills, except: [:index, :show]
     end
   end
-
-  resources :users do
-    resources :skills, only: [:destroy]
-  end
-
-  resources :users do
-    get '/skills',    to: 'skills#index'
-    patch '/skills',  to: 'skills#update'
-  end
-
 end
