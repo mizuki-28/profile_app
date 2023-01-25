@@ -1,27 +1,50 @@
-# README
+# Ruby on Rails チュートリアルのサンプルアプリケーション
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+これは、次の教材で作られたサンプルアプリケーションです。
+[*Ruby on Rails チュートリアル*](https://railstutorial.jp/)
+（第7版）
+[Michael Hartl](https://www.michaelhartl.com/) 著
 
-Things you may want to cover:
+## ライセンス
 
-* Ruby version
+[Ruby on Rails チュートリアル](https://railstutorial.jp/)内にある
+ソースコードはMITライセンスとBeerwareライセンスのもとで公開されています。
+詳細は [LICENSE.md](LICENSE.md) をご覧ください。
 
-* System dependencies
+## 使い方
 
-* Configuration
+このアプリケーションを動かす場合は、まずはリポジトリを手元にクローンしてください。
+その後、次のコマンドで必要になる RubyGems をインストールします。
 
-* Database creation
+```
+$ gem install bundler -v 2.3.14
+$ bundle _2.3.14_ config set --local without 'production'
+$ bundle _2.3.14_ install
+```
 
-* Database initialization
+その後、データベースへのマイグレーションを実行します。
 
-* How to run the test suite
+```
+$ rails db:migrate
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+最後に、テストを実行してうまく動いているかどうか確認してください。
 
-* Deployment instructions
+```
+$ rails test
+```
 
-* ...
+テストが無事にパスしたら、Railsサーバーを立ち上げる準備が整っているはずです。
+
+```
+$ rails server
+```
+
+詳しくは、[*Ruby on Rails チュートリアル*](https://railstutorial.jp/)
+を参考にしてください。
+
+## MEMO
+```
     <canvas id="mychart-bar"></canvas>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -46,7 +69,8 @@ Things you may want to cover:
       },
     });
     </script>
-
+```
+```
 <script>
   const btn = document.getElementById('modalOpen');
   const modal = document.getElementById('modalCreate');
@@ -60,6 +84,8 @@ Things you may want to cover:
     modal.style.display = 'none';
   })
 </script>
+```
+```
 <script>
 {
   const openBtn = document.querySelector('.open');
@@ -79,6 +105,8 @@ Things you may want to cover:
   });
 }
 </script>
+```
+```
   <!-- モーダル -->
   <div class="overlay"></div>
   <div class="modal">
@@ -90,7 +118,8 @@ Things you may want to cover:
     </div>
   </div>
   <!-- モーダルおわり -->
-
+```
+```
 {
   const openBtn = document.querySelector('.open');
   const modal = document.querySelector('.modal');
@@ -108,9 +137,9 @@ Things you may want to cover:
     overlay.classList.remove('active');
   });
 }
-
+```
+```
 /* MODAL */
-
 /* オーバーレイ（黒の背景） */
 .overlay {
   /* 位置を固定 */
@@ -128,14 +157,12 @@ Things you may want to cover:
   /* 表示する際の変化の所要時間 */
   transition: .3s;
 }
-
 /* activeクラスのついたオーバーレイ */
 .overlay.active {
   /* activeクラスがついたときにオーバーレイを表示する */
   opacity: 1;
   visibility: visible;
 }
-
 /* モーダルウィンドウ */
 .modal {
   max-width: 500px;
@@ -153,18 +180,16 @@ Things you may want to cover:
   /* 表示の変化にかかる時間 */
   transition: .3s;
 }
-
 /* activeクラスのついたモーダルウィンドウ */
 .modal.active {
   opacity: 1;
   visibility: visible;
 }
-
 .modal p {
   font-size: 13px;
 }
-
 /* スクロールできる高さを出すための設定 */
 section {
   height: 200vh;
 }
+```
