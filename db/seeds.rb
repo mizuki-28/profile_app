@@ -1,7 +1,8 @@
 User.create!(
-  email: 'user1@example.com',
   name: 'ユーザー',
-  image: File.open('./app/assets/images/avatar.png')
+  email: 'user1@example.com',
+  password: '000000',
+  introduction: 'ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。ダミーテキスト。'
 )
 
 Category.create!(
