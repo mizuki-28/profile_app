@@ -1,25 +1,17 @@
-# Ruby on Rails チュートリアルのサンプルアプリケーション
-
-これは、次の教材で作られたサンプルアプリケーションです。
-[*Ruby on Rails チュートリアル*](https://railstutorial.jp/)
-（第7版）
-[Michael Hartl](https://www.michaelhartl.com/) 著
-
-## ライセンス
-
-[Ruby on Rails チュートリアル](https://railstutorial.jp/)内にある
-ソースコードはMITライセンスとBeerwareライセンスのもとで公開されています。
-詳細は [LICENSE.md](LICENSE.md) をご覧ください。
+# Ruby on Rails プロフィールアプリの作成
 
 ## 使い方
 
 このアプリケーションを動かす場合は、まずはリポジトリを手元にクローンしてください。
+
+```
+$ git clone https://github.com/mizuki-28/profile_app
+```
+
 その後、次のコマンドで必要になる RubyGems をインストールします。
 
 ```
-$ gem install bundler -v 2.3.14
-$ bundle _2.3.14_ config set --local without 'production'
-$ bundle _2.3.14_ install
+$ bundle install
 ```
 
 その後、データベースへのマイグレーションを実行します。
@@ -28,47 +20,39 @@ $ bundle _2.3.14_ install
 $ rails db:migrate
 ```
 
-最後に、テストを実行してうまく動いているかどうか確認してください。
+Railsサーバーを立ち上げる準備が整っているはずです。
 
 ```
-$ rails test
+$ rails s
 ```
-
-テストが無事にパスしたら、Railsサーバーを立ち上げる準備が整っているはずです。
-
-```
-$ rails server
-```
-
-詳しくは、[*Ruby on Rails チュートリアル*](https://railstutorial.jp/)
-を参考にしてください。
 
 ## MEMO
+
 ```
-    <canvas id="mychart-bar"></canvas>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-    var ctx = document.getElementById('mychart-bar');
-    var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['January', 'February', 'March'],
-        datasets: [{
-          label: 'バックエンド',
-          data: <%= @dataset_1 %>,
-          backgroundColor: '#ffc0cb',
-        }, {
-          label: 'フロントエンド',
-          data: <%= @dataset_2 %>,
-          backgroundColor: '#ffd5bf',
-        }, {
-          label: 'インフラ',
-          data: <%= @dataset_3 %>,
-          backgroundColor: '#fff4bf',
-        }],
-      },
-    });
-    </script>
+<canvas id="mychart-bar"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+var ctx = document.getElementById('mychart-bar');
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['January', 'February', 'March'],
+    datasets: [{
+      label: 'バックエンド',
+      data: <%= @dataset_1 %>,
+      backgroundColor: '#ffc0cb',
+    }, {
+      label: 'フロントエンド',
+      data: <%= @dataset_2 %>,
+      backgroundColor: '#ffd5bf',
+    }, {
+      label: 'インフラ',
+      data: <%= @dataset_3 %>,
+      backgroundColor: '#fff4bf',
+    }],
+  },
+});
+</script>
 ```
 ```
 <script>
@@ -107,17 +91,17 @@ $ rails server
 </script>
 ```
 ```
-  <!-- モーダル -->
-  <div class="overlay"></div>
-  <div class="modal">
-    <div class="modal-content">
-      <p>インフラの項目を削除しました！</p>
-      <div class="center-button">
-        <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button close" %>
-      </div>
+<!-- モーダル -->
+<div class="overlay"></div>
+<div class="modal">
+  <div class="modal-content">
+    <p>インフラの項目を削除しました！</p>
+    <div class="center-button">
+      <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button close" %>
     </div>
   </div>
-  <!-- モーダルおわり -->
+</div>
+<!-- モーダルおわり -->
 ```
 ```
 {
