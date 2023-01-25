@@ -22,37 +22,149 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+    <canvas id="mychart-bar"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    var ctx = document.getElementById('mychart-bar');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['January', 'February', 'March'],
+        datasets: [{
+          label: 'バックエンド',
+          data: <%= @dataset_1 %>,
+          backgroundColor: '#ffc0cb',
+        }, {
+          label: 'フロントエンド',
+          data: <%= @dataset_2 %>,
+          backgroundColor: '#ffd5bf',
+        }, {
+          label: 'インフラ',
+          data: <%= @dataset_3 %>,
+          backgroundColor: '#fff4bf',
+        }],
+      },
+    });
+    </script>
 
-■一時保管
+<script>
+  const btn = document.getElementById('modalOpen');
+  const modal = document.getElementById('modalCreate');
+  const btnClose = document.getElementsById('modalClose');
 
-<% if logged_in? %>
-  <%= link_to "ログアウト", logout_path, data: { "turbo-method": :delete } %>
-<% else %>
-  <%= link_to "ログイン", login_path %>
-<% end %>
+  btn.addEventListener('click', function() {
+    modal.style.display = 'block';
+  })
 
-def top
-  @user = User.find(params[:id])
-end
+  btnClose.addEventListener('click', function() {
+    modal.style.display = 'none';
+  })
+</script>
+<script>
+{
+  const openBtn = document.querySelector('.open');
+  const modal = document.querySelector('.modal');
+  const closeBtn = document.querySelector('.close');
+  const overlay = document.querySelector('.overlay');
 
-■習得レベルの選択肢にlevelsテーブルの値をとってくる
+  openBtn.addEventListener('click', function(e){
+    e.preventDefault();
+    modal.classList.add('active');
+    overlay.classList.add('active');
+  });
 
-<%= f.label :skill_name, "習得レベル" %>
-<%= f.collection_select :level_id, Level.all, :id, :rank, class: 'form-select' %>
+  closeBtn.addEventListener('click', function(){
+    modal.classList.remove('active');
+    overlay.classList.remove('active');
+  });
+}
+</script>
+  <!-- モーダル -->
+  <div class="overlay"></div>
+  <div class="modal">
+    <div class="modal-content">
+      <p>インフラの項目を削除しました！</p>
+      <div class="center-button">
+        <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button close" %>
+      </div>
+    </div>
+  </div>
+  <!-- モーダルおわり -->
 
-■メモ
-migrationファイルひとつdb:migrateできていない
-SQLite3は設定しなくてもuniqueになっている？？
+{
+  const openBtn = document.querySelector('.open');
+  const modal = document.querySelector('.modal');
+  const closeBtn = document.querySelector('.close');
+  const overlay = document.querySelector('.overlay');
 
-User.create(name: "test user", email: "test.user@example.com", password: "000000", introduction: "自己紹介")
-Skill.create(skill_name: "Sample", level: 40, user_id: 1, category_id: 1)
+  openBtn.addEventListener('click', function(e){
+    e.preventDefault();
+    modal.classList.add('active');
+    overlay.classList.add('active');
+  });
 
-<%= f.label :level, "習得レベル" %>
-<%= f.number_field :level, class: 'form-control' %>
+  closeBtn.addEventListener('click', function(){
+    modal.classList.remove('active');
+    overlay.classList.remove('active');
+  });
+}
 
-"/users/#{current_user.id}/skills/#{skill.id}"
-<%= form_with model: @skill do |f| %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.hidden_field :category_id, value: skill.category_id %>
-  <%= f.hidden_field :id, value: skill.id %>
-  
+/* MODAL */
+
+/* オーバーレイ（黒の背景） */
+.overlay {
+  /* 位置を固定 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* 画面いっぱいに広がるようにする */
+  width: 100%;
+  height: 100vh;
+  /* rgbaを使って60%の黒いオーバーレイにする */
+  background: rgba(0, 0, 0, 0.6);  
+  /* デフォルトでは見えないようにする */
+  opacity: 0;
+  visibility: hidden;
+  /* 表示する際の変化の所要時間 */
+  transition: .3s;
+}
+
+/* activeクラスのついたオーバーレイ */
+.overlay.active {
+  /* activeクラスがついたときにオーバーレイを表示する */
+  opacity: 1;
+  visibility: visible;
+}
+
+/* モーダルウィンドウ */
+.modal {
+  max-width: 500px;
+  width: 86%;
+  padding: 15px 20px;
+  background: #fff;
+  /* 位置の調整(真ん中に表示) */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* デフォルトでは非表示にしておく */
+  opacity: 0;
+  visibility: hidden;
+  /* 表示の変化にかかる時間 */
+  transition: .3s;
+}
+
+/* activeクラスのついたモーダルウィンドウ */
+.modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal p {
+  font-size: 13px;
+}
+
+/* スクロールできる高さを出すための設定 */
+section {
+  height: 200vh;
+}

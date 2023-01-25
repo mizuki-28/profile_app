@@ -1,0 +1,48 @@
+<% provide(:title, 'Skills') %>
+<div class="container">
+  <% @categories.each do |category| %>
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title"><%= category.category_name %></div>
+        <%= link_to "スキルを追加する", new_user_category_skill_path(current_user.id, category.id), class: "nomal button" %>
+      </div>
+      <%= form_with model: @skill, url: user_category_skill_path do |f| %>
+        <table>
+          <thead>
+            <tr>
+              <td width="200">習得スキル</td>
+              <td width="200">習得レベル</td>
+              <td width="240"></td>
+              <td width="240"></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @skills.each do |skill| %>
+              <% if category.id.eql?(skill.category_id) %>
+                <tr>
+                  <td><%= skill.skill_name %></td>
+                  <td><%= f.number_field :level, value: skill.level, class: 'form-control' %></td>
+                  <td><%= f.submit "習得レベルを保存する", class: "save button", id: "modalUpdate" %></td>
+                  <td><%= link_to "スキルを削除する", "/users/#{current_user.id}/skills/#{skill.id}", data: { turbo_method: :delete }, class: "delete button" %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="card-bottom"></div>
+</div>
+<!-- modalStart -->
+<section id="modalUpdate" class="modal">
+  <div class="modal-body">
+    <div class="modal-content">
+      <p><%= @skill.skill_name %>の習得レベルを保存しました！</p>
+      <div class="center-button">
+        <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button", id: "modalClose" %>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- modalEnd -->

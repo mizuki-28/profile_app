@@ -15,11 +15,23 @@
             <p>0 ~ 100 の間で選択してください</p>
           </div>
           <%= f.hidden_field :category_id, value: @category.id %>
-          <div class="center-button">
-            <%= f.submit "追加する", class: "nomal button" %>
+          <div class="center-button", id="modalOpen">
+            <%= f.submit "追加する", class: "nomal button", id: "modalOpen" %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+<!-- modalStart -->
+<section id="modalCreate" class="modal">
+  <div class="modal-body">
+    <div class="modal-content">
+      <p><%= @category.category_name %>に<%= @skill.skill_name %>を<br>習得レベル<%= @skill.level %>で追加しました！</p>
+      <div class="center-button", id="modalClose">
+        <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button", id: "modalClose" %>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- modalEnd -->

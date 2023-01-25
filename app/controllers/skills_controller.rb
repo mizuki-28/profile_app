@@ -22,9 +22,16 @@ class SkillsController < ApplicationController
     end
   end
 
+  def edit
+    @categories = Category.all
+    @category = Category.find(params[:category_id])
+    @skills = Skill.where(user_id: current_user.id)
+    @skill = Skill.find(params[:id])
+  end
+
   def update
     @skill = Skill.find(params[:id])
-    if @skill.update(level: @skill.level)
+    if @skill.update!(skill_params)
       flash[:success] = "習得レベルを更新しました"
       redirect_to user_skills_path
     else
@@ -36,7 +43,7 @@ class SkillsController < ApplicationController
     @skill = Skill.find(params[:id])
     @skill.destroy
     flash[:success] = "スキルを削除しました"
-    redirect_to "/users/#{current_user.id}/skills#modal-destroy", status: :see_other
+    redirect_to user_skills_path
   end
 
   private
