@@ -21,8 +21,8 @@
               <tr>
                 <td><%= skill.skill_name %></td>
                 <td><%= skill.level %></td>
-                <td><%= link_to "習得レベルを編集する", "/users/#{current_user.id}/categories/#{skill.category_id}/skills/#{skill.id}/edit", class: "save button" %></td>
-                <td><%= link_to "スキルを削除する", "/users/#{current_user.id}/categories/#{skill.category_id}/skills/#{skill.id}", data: { turbo_method: :delete }, class: "delete button" %></td>
+                <td><%= link_to "習得レベルを編集する", edit_user_category_skill_path(current_user.id, category.id, skill.id), class: "save button" %></td>
+                <td><%= link_to "スキルを削除する", user_category_skill_path(current_user.id, category.id, skill.id), data: { turbo_method: :delete }, class: "delete button" %></td>
               </tr>
             <% end %>
           <% end %>
