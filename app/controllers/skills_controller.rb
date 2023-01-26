@@ -31,7 +31,7 @@ class SkillsController < ApplicationController
 
   def update
     @skill = Skill.find(params[:id])
-    if @skill.update!(skill_params)
+    if @skill.update(skill_params)
       flash[:success] = "習得レベルを更新しました"
       redirect_to user_skills_path
     else
@@ -42,7 +42,6 @@ class SkillsController < ApplicationController
   def destroy
     @skill = Skill.find(params[:id])
     @skill.destroy
-    flash[:success] = "スキルを削除しました"
     redirect_to user_skills_path
   end
 

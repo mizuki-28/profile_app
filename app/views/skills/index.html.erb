@@ -3,8 +3,10 @@
   <% @categories.each do |category| %>
     <div class="card">
       <div class="card-top">
-        <div class="card-title"><%= category.category_name %></div>
-        <%= link_to "スキルを追加する", new_user_category_skill_path(current_user.id, category.id), class: "nomal button" %>
+        <div class="card-title">
+          <%= category.category_name %>
+        </div>
+        <%= link_to "スキルを追加する", new_user_category_skill_path(current_user, category), class: "nomal button" %>
       </div>
       <table>
         <thead>
@@ -21,8 +23,8 @@
               <tr>
                 <td><%= skill.skill_name %></td>
                 <td><%= skill.level %></td>
-                <td><%= link_to "習得レベルを編集する", edit_user_category_skill_path(current_user.id, category.id, skill.id), class: "save button" %></td>
-                <td><%= link_to "スキルを削除する", user_category_skill_path(current_user.id, category.id, skill.id), data: { turbo_method: :delete }, class: "delete button" %></td>
+                <td><%= link_to "習得レベルを編集する", edit_user_category_skill_path(current_user, category, skill), class: "save button" %></td>
+                <td><%= link_to "スキルを削除する", user_category_skill_path(current_user, category, skill), data: { turbo_method: :delete }, class: "delete button" %></td>
               </tr>
             <% end %>
           <% end %>
@@ -31,4 +33,16 @@
     </div>
   <% end %>
   <div class="card-bottom"></div>
+  <!-- modal start -->
+  <section id="modal-destroy", class="modal">
+    <div class="modal-body">
+      <div class="modal-content">
+        <p>の項目を削除しました！</p>
+        <div class="center-button">
+          <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button", id: "modal-close" %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- modal end -->
 </div>

@@ -6,9 +6,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
-    @dataset_1 = Skill.where(user_id: current_user.id, category_id: 1).map(&:level)
-    @dataset_2 = Skill.where(user_id: current_user.id, category_id: 2).map(&:level)
-    @dataset_3 = Skill.where(user_id: current_user.id, category_id: 3).map(&:level)
+    @dataset1 = Skill.where(user_id: current_user.id, category_id: 1).map(&:level)
+    @dataset2 = Skill.where(user_id: current_user.id, category_id: 2).map(&:level)
+    @dataset3 = Skill.where(user_id: current_user.id, category_id: 3).map(&:level)
   end
 
   def edit
