@@ -1,4 +1,3 @@
-<% provide(:title, 'Skills') %>
 <div class="container">
   <% @categories.each do |category| %>
     <div class="card">
@@ -33,16 +32,40 @@
     </div>
   <% end %>
   <div class="card-bottom"></div>
-  <!-- modal start -->
-  <section id="modal-destroy", class="modal">
-    <div class="modal-body">
-      <div class="modal-content">
-        <p>の項目を削除しました！</p>
-        <div class="center-button">
-          <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button", id: "modal-close" %>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- modal end -->
 </div>
+
+<% if @modal.eql?("destroy") %>
+  <div class="overlay"></div>
+  <div class="modal">
+    <div class="modal-text">
+      <p><br>項目を削除しました！</p>
+    </div>
+    <div class="center-button">
+      <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button" %></div>
+    </div>
+  </div>
+<% end %>
+
+<% if @modal.eql?("create") %>
+  <div class="overlay"></div>
+  <div class="modal">
+    <div class="modal-text">
+      <p><%= @category.category_name %>に<%= @skill_name %>を<br>習得レベル<%= @level %>で追加しました！</p>
+    </div>
+    <div class="center-button">
+      <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button" %>
+    </div>
+  </div>
+<% end %>
+
+<% if @modal.eql?("update") %>
+  <div class="overlay"></div>
+  <div class="modal">
+    <div class="modal-text">
+      <p><br><%= @skill_name %>の習得レベルを保存しました！</p>
+    </div>
+    <div class="center-button">
+      <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button" %>
+    </div>
+  </div>
+<% end %>

@@ -3,6 +3,12 @@ class SkillsController < ApplicationController
   def index
     @categories = Category.all
     @skills = Skill.where(user_id: current_user.id)
+    @modal = params[:modal]
+    if params[:skill_name].present?
+      @category = Category.find(params[:category_id])
+      @skill_name = params[:skill_name]
+      @level = params[:level]
+    end
   end
 
   def new
@@ -11,11 +17,11 @@ class SkillsController < ApplicationController
   end
 
   def create
+    p = skill_params
     @category = Category.find(params[:category_id])
     @skill = Skill.new(skill_params)
     if @skill.save
-      flash[:success] = '習得スキルを登録しました'
-      redirect_to user_skills_path
+      redirect_to action: index, **p, modal: :create
     else
       flash.now[:danger] = '習得スキルを登録できませんでした'
       render :new, status: :unprocessable_entity
@@ -30,19 +36,16 @@ class SkillsController < ApplicationController
   end
 
   def update
+    p = skill_params
     @skill = Skill.find(params[:id])
-    if @skill.update(skill_params)
-      flash[:success] = "習得レベルを更新しました"
-      redirect_to user_skills_path
-    else
-      flash[:alert] = "習得スキルを更新できませんでした"
-    end
+    @skill.update(skill_params)
+    redirect_to action: index, **p, modal: :update
   end
 
   def destroy
     @skill = Skill.find(params[:id])
     @skill.destroy
-    redirect_to user_skills_path
+    redirect_to action: index, modal: :destroy, status: :see_other
   end
 
   private

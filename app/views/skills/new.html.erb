@@ -1,37 +1,24 @@
 <% provide(:title, 'New') %>
-<div class="main">
-  <div class="new-container">
-    <div class="title">
-      <p><%= @category.category_name %>にスキルを追加</p>
-    </div>
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4">
-        <%= form_with model: @skill, url: user_category_skills_path do |f| %>
-          <%= f.label :skill_name, "習得スキル" %>
-          <%= f.text_field :skill_name, class: 'form-control' %>
-          <%= f.label :level, "習得レベル" %>
-          <%= f.number_field :level, class: 'form-control' %>
-          <div class="explain">
-            <p>0 ~ 100 の間で選択してください</p>
-          </div>
-          <%= f.hidden_field :category_id, value: @category.id %>
-          <div class="center-button", id="modalOpen">
-            <%= f.submit "追加する", anchor: 'modal-create', class: "nomal button", remote: true %>
-          </div>
-        <% end %>
-      </div>
+<div class="new-container">
+  <div class="title">
+    <p><%= @category.category_name %>にスキルを追加</p>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%= form_with model: @skill, url: user_category_skills_path do |f| %>
+        <%= f.label :skill_name, "習得スキル" %>
+        <%= f.text_field :skill_name, class: 'form-control' %>
+        <%= f.label :level, "習得レベル" %>
+        <%= f.number_field :level, class: 'form-control' %>
+        <div class="explain">
+          <p>0 ~ 100 の間で選択してください</p>
+        </div>
+        <%= f.hidden_field :category_id, value: @category.id %>
+        <%= f.hidden_field :category_name, value: @category.category_name %>
+        <div class="center-button">
+          <%= f.submit "追加する", class: "nomal button" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
-<!-- modal start -->
-<section id="modal-create" class="modal">
-  <div class="modal-body">
-    <div class="modal-content">
-      <p><%= @category.category_name %>に<%= @skill.skill_name %>を<br>習得レベル<%= @skill.level %>で追加しました！</p>
-      <div class="center-button", id="modal-close">
-        <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button" %>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- modal end -->

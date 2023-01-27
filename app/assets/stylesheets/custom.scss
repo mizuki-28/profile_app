@@ -94,6 +94,7 @@ label {
 
 .form-control {
   padding: 8px;
+  font-size: 15px;
 }
 
 select {
@@ -150,7 +151,7 @@ select {
 .delete {
   background-color: #EE6969;
   color: #FFF;
-  padding: 9px 16px;
+  padding: 10px 16px;
   &:hover {
     color: #FFF;
   }
@@ -280,37 +281,6 @@ tbody tr:last-child td {
   margin-bottom: 32px;
 }
 
-/* MODAL */
-.modal {
-	visibility: hidden;
-	opacity: 0;
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: rgba(0, 0, 0, .5);
-	transition: all .6s;
-}
-
-.modal:target {
-	visibility: visible;
-	opacity: 1;
-}
-
-.modal-content {
-	position: relative;
-	width: 400px;
-	max-width: 90%;
-	background: #fff;
-	padding: 20px;
-	max-height: 400px;
-	overflow-y: auto;
-}
-
 /* FOOTER */
 .footer {
   background-color: #1B5678;
@@ -325,4 +295,34 @@ tbody tr:last-child td {
   font-size: 18px;
   text-align: center;
   padding: 10px;
+}
+
+/* MODAL */
+.overlay {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  z-index: 2;
+  display: block;
+}
+
+.modal {
+  background-color: #fff;
+  opacity: 1;
+  display: block;
+  height: 240px;
+  margin: auto;
+  padding: 50px;
+  width: 640px;
+  z-index: 3;
+}
+
+.modal p {
+  font-weight: bold;
+  text-align: center;
+  line-height: 150%;
+  font-size: 18px;
 }

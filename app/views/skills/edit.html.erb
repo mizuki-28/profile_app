@@ -21,9 +21,16 @@
               <% if category.id.eql?(skill.category_id) %>
                 <tr>
                   <td><%= skill.skill_name %></td>
-                  <td><%= f.number_field :level, value: skill.level, class: 'form-control' %></td>
-                  <td><%= f.submit "習得レベルを保存する", class: "save button", id: "modal-update" %></td>
-                  <td><%= link_to "スキルを削除する", user_category_skill_path, data: { turbo_method: :delete }, class: "delete button" %></td>
+                  <% if @skill.id.eql?(skill.id) %>
+                    <%= f.hidden_field :category_id, value: @category.id %>
+                    <%= f.hidden_field :skill_name, value: skill.skill_name %>
+                    <td><%= f.number_field :level, value: skill.level, class: "form-control" %></td>
+                    <td><%= f.submit "習得レベルを保存する", class: "save button" %></td>
+                  <% else %>
+                    <td><%= skill.level %></td>
+                    <td><p class="save button">習得レベルを保存する</p></td>
+                  <% end %>
+                  <td><p class="delete button">スキルを削除する</p></td>
                 </tr>
               <% end %>
             <% end %>
@@ -34,15 +41,3 @@
   <% end %>
   <div class="card-bottom"></div>
 </div>
-<!-- modal start -->
-<section id="modal-update" class="modal">
-  <div class="modal-body">
-    <div class="modal-content">
-      <p><%= @skill.skill_name %>の習得レベルを保存しました！</p>
-      <div class="center-button">
-        <%= link_to "スキル編集ページに戻る", user_skills_path, class: "nomal button", id: "modal-close" %>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- modal end -->
