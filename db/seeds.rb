@@ -40,12 +40,6 @@ Skill.create!(
       category_id: 1
     },
     {
-      skill_name: '削除用',
-      level: 100,
-      user_id: 1,
-      category_id: 1
-    },
-    {
       skill_name: 'HTML',
       level: 40,
       user_id: 1,
@@ -78,6 +72,12 @@ Skill.create!(
     {
       skill_name: 'Firebase',
       level: 40,
+      user_id: 1,
+      category_id: 3
+    },
+    {
+      skill_name: 'テスト',
+      level: 100,
       user_id: 1,
       category_id: 3
     }
