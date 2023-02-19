@@ -4,7 +4,7 @@ class SkillsController < ApplicationController
 
   def index
     @categories = Category.all
-    @skills = Skill.where(user_id: current_user.id)
+    @skills = current_user.skills
     @modal = params[:modal]
     if params[:skill_name].present?
       @category = Category.find(params[:category_id])
@@ -15,13 +15,12 @@ class SkillsController < ApplicationController
 
   def new
     @category = Category.find(params[:category_id])
-    @skill = Skill.new
+    @skill = current_user.skills.new
   end
 
   def create
     p = skill_params
-    @category = Category.find(params[:category_id])
-    @skill = Skill.new(skill_params)
+    @skill = current_user.skills.new(skill_params)
     if @skill.save
       redirect_to action: index, **p, modal: :create
     else
@@ -43,7 +42,6 @@ class SkillsController < ApplicationController
   end
 
   def destroy
-    skill = Skill.find(params[:id])
     @skill.destroy
     redirect_to action: index, modal: :destroy, status: :see_other
   end
@@ -51,10 +49,10 @@ class SkillsController < ApplicationController
   private
 
     def skill_params
-      params.require(:skill).permit(:id, :skill_name, :level, :category_id).merge(user_id: current_user.id)
+      params.require(:skill).permit(:id, :skill_name, :level, :category_id)
     end
 
     def set_skill
-      @skill = Skill.find(params[:id])
+      @skill = current_user.skills.find(params[:id])
     end
 end
